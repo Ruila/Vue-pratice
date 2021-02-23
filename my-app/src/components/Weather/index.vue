@@ -1,6 +1,6 @@
 <template>
   <div id="weather">
-    <h1>{{ msg }}</h1>
+    <h1>天氣預報</h1>
     <div class="areas">
       <div v-for = "(item, key, index) in status.data" :key = index class="areas-unit">
         <Unit :areaName = item.locationName />
@@ -12,6 +12,7 @@
 
 <script>
 import Unit from './unit'
+import {key} from '@/key/weather'
 export default {
   name: 'Weather',
   components: {
@@ -19,7 +20,6 @@ export default {
   },
   data () {
     return {
-      msg: 'Welcome to Weather',
       status: {
         data: []
       }
@@ -27,7 +27,7 @@ export default {
   },
   mounted () {
     console.log('in index')
-    this.axios.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-077?Authorization=CWB-66C1A43E-5E26-4909-8121-A12C192396ED').then((response) => {
+    this.axios.get(`https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-077?Authorization=${key}`).then((response) => {
       console.log(response.data.records.locations[0].location)
       this.$set(this.status, 'data', response.data.records.locations[0].location)
       console.log(this.status.data)
@@ -53,12 +53,33 @@ export default {
 }
 
 #weather .areas .areas-unit {
+  position: relative;
   width: 250px;
-  background-color: aquamarine;
+  background-color: #ffffff;
   min-height: 100px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   display: flex;
   justify-content: center;
   cursor: pointer;
+}
+
+#weather .areas .areas-unit:hover {
+    /* background-color: #5a5a5a; */
+    animation-name: animation;
+    animation-duration: .1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes animation {
+    from {
+        top: 0px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    }
+
+    to {
+        top: -3px;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
 }
 </style>
