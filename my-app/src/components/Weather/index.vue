@@ -10,9 +10,16 @@
 <script>
 import Area from './area'
 export default {
-  name: 'weather',
+  name: 'Weather',
   components: {
     Area
+  },
+  mounted: function () {
+    console.log('hi in weahter')
+    this.axios.get('https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-077?Authorization=CWB-66C1A43E-5E26-4909-8121-A12C192396ED')
+    .then((response) => {
+      console.log(response.data)
+    })
   },
   data () {
     return {

@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'area',
+  name: 'Area',
   data () {
     return {
       msg: 'Welcome to Area'
