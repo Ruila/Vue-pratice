@@ -43,6 +43,21 @@ export default {
     return {
       msg: 'Welcome to Area'
     }
+  },
+  beforeCreate () {
+    console.log('<Area index> beforeCreate', this.msg)
+  },
+  created () {
+    console.log('<Area index> created', this.msg)
+  },
+  beforeMount () {
+    console.log('<Area index> beforeMounted', this.msg)
+  },
+  mounted () {
+    console.log('<Area index> mounted')
+  },
+  updated () {
+    console.log('<Area index> updated')
   }
 }
 </script>

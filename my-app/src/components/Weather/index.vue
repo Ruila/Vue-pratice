@@ -2,10 +2,12 @@
   <div id="weather">
     <h1>天氣預報</h1>
     <div class="areas">
-      <div v-for = "(item, key, index) in status.data" :key = index class="areas-unit">
+      <!-- <div v-for = "(item, key, index) in status.data" :key = index class="areas-unit">
         <Unit :areaName = item.locationName />
+      </div> -->
+      <div class="areas-unit">
+        <Unit :areaName = this.status.data[0].locationName />
       </div>
-
     </div>
   </div>
 </template>
@@ -21,17 +23,32 @@ export default {
   data () {
     return {
       status: {
-        data: []
+        data: [{locationName: 'Null'}],
+        msg: 'aa'
       }
     }
   },
+  beforeCreate () {
+    console.log('<index> beforeCreate')
+  },
+  created () {
+    console.log('<index> created')
+  },
+  beforeMount () {
+    console.log('<index> beforeMounted')
+  },
   mounted () {
-    console.log('in index')
-    this.axios.get(`https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-077?Authorization=${key}`).then((response) => {
-      console.log(response.data.records.locations[0].location)
-      this.$set(this.status, 'data', response.data.records.locations[0].location)
-      console.log(this.status.data)
-    })
+    console.log('<index> mounted')
+    // this.axios.get(`https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-077?Authorization=${key}`).then((response) => {
+    //   console.log(response.data.records.locations[0].location)
+    //   this.$set(this.status, 'data', response.data.records.locations[0].location)
+    //   console.log(this.status.data)
+    // })
+    let array = [{locationName: 'Test'}]
+    this.$set(this.status, 'data', array)
+  },
+  updated () {
+    console.log('<index> updated', this.status.data)
   }
 }
 </script>

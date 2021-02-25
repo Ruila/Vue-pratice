@@ -17,14 +17,28 @@ export default {
     return {
     }
   },
-  beforeCreate: function () {
-    // console.log('in area before created')
+  beforeCreate () {
+    // console.log('<unit> beforeCreated')
   },
-  created: function () {
-    // console.log('in area created', this.areaName)
+  created () {
+    console.log('<unit> created')
   },
-  mounted: function () {
-    // console.log('in area mounted', this.areaName)
+  beforeMount () {
+    console.log('<unit> beforeMount')
+  },
+  mounted () {
+    console.log('<unit> mounted')
+  },
+  beforeUpdated () {
+    console.log('<unit> beforeUpdated')
+  },
+  updated () {
+    console.log('<unit> updated')
+  },
+  watch: {
+    areaName () {
+      console.log('<unit> watch')
+    }
   },
   methods: {
     selectArea () {
