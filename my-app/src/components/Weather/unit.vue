@@ -21,23 +21,23 @@ export default {
     // console.log('<unit> beforeCreated')
   },
   created () {
-    console.log('<unit> created')
+    // console.log('<unit> created', this.areaName)
   },
   beforeMount () {
-    console.log('<unit> beforeMount')
+    // console.log('<unit> beforeMount', this.areaName)
   },
   mounted () {
-    console.log('<unit> mounted')
+    // console.log('<unit> mounted', this.areaName)
   },
   beforeUpdated () {
-    console.log('<unit> beforeUpdated')
+    // console.log('<unit> beforeUpdated')
   },
   updated () {
     console.log('<unit> updated')
   },
   watch: {
-    areaName () {
-      console.log('<unit> watch')
+    areaName (val) {
+      console.log('<unit> watch', val)
     }
   },
   methods: {
