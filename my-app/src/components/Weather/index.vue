@@ -2,8 +2,8 @@
   <div id="weather">
     <h1>天氣預報</h1>
     <div class="search-group">
-      <input v-model = this.status.area />
-      <span v-on:click = "getData">{{this.status.area}}</span>
+      <input  v-model="status.area" />
+      <span @click = "getData">搜尋</span>
     </div>
     <div class="areas">
       <div v-for = "(item, key, index) in status.data" :key = index class="areas-unit">
@@ -28,7 +28,7 @@ export default {
     return {
       status: {
         data: [],
-        msg: 'aa',
+        inputValue: 'aa',
         area: '臺南市',
         areaDict: {
           '宜蘭縣': 'F-D0047-001',
@@ -53,8 +53,8 @@ export default {
           '臺南市': 'F-D0047-077',
           '連江市': 'F-D0047-081',
           '金門市': 'F-D0047-085',
-          '臺灣': 'F-D0047-089',
-        },
+          '臺灣': 'F-D0047-089'
+        }
       }
     }
   },
@@ -68,7 +68,7 @@ export default {
     // console.log('<index> beforeMounted', this.$el)
   },
   mounted () {
-    // console.log('this area', this.status.area)
+    console.log('this area', this.status.area)
     this.getData(this.status.area)
     // let array = [{locationName: 'Test'}]
     // this.$set(this.status, 'data', array)
@@ -77,13 +77,16 @@ export default {
   updated () {
     console.log('<index> updated', this.status.data)
   },
+  watch: {
+    status (val) {
+      console.log('<index> watch', val)
+    }
+  },
   methods: {
     getData () {
       this.axios.get(`https://opendata.cwb.gov.tw/api/v1/rest/datastore/${this.status.areaDict[this.status.area]}?Authorization=${key}`).then((response) => {
-      console.log(response.data.records.locations[0].location)
-      this.$set(this.status, 'data', response.data.records.locations[0].location)
-      console.log(this.status.data)
-    })
+        this.$set(this.status, 'data', response.data.records.locations[0].location)
+      })
     },
     search () {
 
