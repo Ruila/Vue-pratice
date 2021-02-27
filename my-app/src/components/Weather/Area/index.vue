@@ -54,10 +54,10 @@ export default {
     console.log('<Area index> beforeMounted', this.msg)
   },
   mounted () {
-    console.log('<Area index> mounted')
+    // console.log('<Area index> mounted')
   },
   updated () {
-    console.log('<Area index> updated')
+    // console.log('<Area index> updated')
   }
 }
 </script>
