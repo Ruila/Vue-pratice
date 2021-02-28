@@ -74,8 +74,11 @@ export default {
     // this.$set(this.status, 'data', array)
     // console.log('<index> mounted', this.$el)
   },
+  beforeUpdate () {
+    console.log('<index> before updated', this.status.area)
+  },
   updated () {
-    console.log('<index> updated', this.status.data)
+    console.log('<index> updated', this.status.area)
   },
   watch: {
     status (val) {
