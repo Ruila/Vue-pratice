@@ -5,45 +5,14 @@
 </template>
 
 <script>
-export default {
-  name: 'Unit',
-  props: {
-    areaName: {
-      type: String,
-      default: 'name'
-    }
-  },
-  data () {
-    return {
-    }
-  },
-  beforeCreate () {
-    // console.log('<unit> beforeCreated')
-  },
-  created () {
-    // console.log('<unit> created', this.areaName)
-  },
-  beforeMount () {
-    // console.log('<unit> beforeMount', this.areaName)
-  },
-  mounted () {
-    // console.log('<unit> mounted', this.areaName)
-  },
-  beforeUpdated () {
-    // console.log('<unit> beforeUpdated')
-  },
-  updated () {
-    console.log('<unit> updated')
-  },
-  watch: {
-    areaName (val) {
-      console.log('<unit> watch', val)
-    }
-  },
-  methods: {
-    selectArea () {
-      this.$router.push({path: `/weather/${this.areaName}`})
-    }
+import { Vue, Component, Prop } from 'vue-property-decorator'
+
+@Component
+export default class Unit extends Vue {
+  @Prop({ default: 'tainan', type: String }) areaName
+
+  selectArea () {
+    this.$router.push({path: `/weather/${this.areaName}`})
   }
 }
 </script>
